@@ -1,0 +1,335 @@
+.button {
+  --primary: #4f46e5;
+  --neutral-1: #ffffff;
+  --neutral-2: #f3f4f6;
+  --radius: 1.04vmax; /* 16px */
+  text-shadow: 0 0.065vmax 0.065vmax rgba(0, 0, 0, 0.2); /* 1px */
+  box-shadow: 0 0.065vmax 0.065vmax rgba(24, 17, 17, 0.4),
+    0 0.782vmax 1.565vmax rgba(0, 0, 0, 0.15),
+    /* 12px 24px */ 0 0.26vmax 0.521vmax rgba(0, 0, 0, 0.1); /* 4px 8px */
+  min-width: 14.3vmax; /* 220px */
+  padding: 1.43vmax; /* 22px */
+  height: 4.69vmax; /* 72px */
+  font-size: 1.24vmax; /* 19px */
+  letter-spacing: -0.013vmax; /* -0.2px */
+  margin-inline: auto;
+  margin-top: 1vmax;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.button:hover {
+  transform: translateY(-0.13vmax) scale(1.02);
+  box-shadow: 0 0.13vmax 0.13vmax rgba(255, 255, 255, 0.4),
+    0 1.17vmax 2.08vmax rgba(0, 0, 0, 0.15),
+    0 0.52vmax 0.78vmax rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  transform: scale(1);
+  box-shadow: 0 0 0.065vmax 0.13vmax rgba(255, 255, 255, 0.3),
+    0 0.65vmax 0.195vmax -0.195vmax rgba(0, 0, 0, 0.2);
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 0.16vmax solid transparent;
+  background: linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45)) border-box;
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+
+.button:hover::after {
+  transform: scale(1.05, 1.1);
+  box-shadow: inset 0 -0.065vmax 0.195vmax 0 rgba(255, 255, 255, 1);
+}
+
+.button::before {
+  content: '';
+  inset: 0.46vmax 0.39vmax 0.39vmax 0.39vmax;
+  border-radius: 1.95vmax;
+  filter: blur(0.03vmax);
+  position: absolute;
+  background: linear-gradient(to top, var(--neutral-1), var(--neutral-2));
+  z-index: 2;
+}
+
+.state p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.state .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scale(1.25);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.state .icon svg {
+  overflow: visible;
+}
+
+.outline {
+  position: absolute;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  inset: -0.13vmax -0.23vmax;
+}
+
+.outline::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 180deg,
+    transparent 60%,
+    var(--primary) 85%,
+    transparent 100%
+  );
+  animation: spin 2.5s linear infinite;
+  animation-play-state: paused;
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button:hover .outline {
+  opacity: 1;
+}
+
+.button:hover .outline::before {
+  animation-play-state: running;
+}
+
+.state p span {
+  display: block;
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+}
+
+.button:hover p span {
+  opacity: 1;
+  animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
+}
+
+.button:focus p span {
+  opacity: 1;
+  animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s);
+}
+
+@keyframes wave {
+  30% {
+    opacity: 1;
+    transform: translateY(0.26vmax) translateX(0) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-0.26vmax) translateX(0) rotate(0);
+    color: var(--primary);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1.3vmax) translateX(0.33vmax) rotate(-90deg);
+    color: var(--primary);
+    filter: blur(5px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0.26vmax) translateX(0) rotate(0);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-0.2vmax) translateX(0) rotate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+
+@keyframes disapear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(0.33vmax) translateY(1.3vmax);
+    filter: blur(0.33vmax);
+    color: var(--primary);
+  }
+}
+
+/* Plane */
+.state--default .icon svg {
+  animation: land 0.6s ease forwards;
+}
+.button:hover .state--default .icon {
+  transform: rotate(45deg) scale(1.25);
+}
+.button:focus .state--default svg {
+  animation: takeOff 0.8s linear forwards;
+}
+.button:focus .state--default .icon {
+  transform: rotate(0) scale(1.25);
+}
+
+@keyframes takeOff {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(5.22vmax) rotate(45deg) scale(2.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(11.73vmax) rotate(45deg) scale(0);
+  }
+}
+
+@keyframes land {
+  0% {
+    transform: translateX(-3.91vmax) translateY(1.95vmax) rotate(-50deg) scale(2);
+    filter: blur(3px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* Contrail */
+.state--default .icon:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0.13vmax;
+  left: -0.33vmax;
+
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
+}
+.button:focus .state--default .icon:before {
+  animation: contrail 0.8s linear forwards;
+}
+
+@keyframes contrail {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  8% {
+    width: 0.98vmax;
+  }
+  60% {
+    opacity: 0.7;
+    width: 5.22vmax;
+  }
+  100% {
+    opacity: 0;
+    width: 10.44vmax;
+  }
+}
+
+/* States */
+.state {
+  padding-left: 1.89vmax;
+  z-index: 2;
+  display: flex;
+  position: relative;
+}
+
+.state--default span:nth-child(5) {
+  margin-right: 0.33vmax;
+}
+
+.state--sent {
+  display: none;
+}
+
+.state--sent svg {
+  transform: scale(1.25);
+  margin-right: 0.52vmax;
+}
+
+.button:focus .state--default {
+  position: absolute;
+}
+
+.button:focus .state--sent {
+  display: flex;
+}
+
+.button:focus .state--sent span {
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s);
+}
+
+.button:focus .state--sent .icon svg {
+  opacity: 0;
+  animation: appear 1.2s ease forwards 0.8s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(4) rotate(-40deg);
+    color: var(--primary);
+    filter: blur(0.26vmax);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(0.6);
+    filter: blur(0.065vmax);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

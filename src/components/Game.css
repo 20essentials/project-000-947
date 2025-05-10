@@ -1,0 +1,113 @@
+.game {
+  width: 56%;
+  min-height: 15vmax;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  margin-top: 1.5vmax;
+
+  @media (width <= 1111px) and (orientation: portrait) {
+    width: 76%;
+  }
+
+  .game-top {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    padding: 1vmax;
+    padding-top: 0;
+    color: #fff;
+    gap: 1vmax;
+    font-size: 1.3vmax;
+    transition: height 0.3s ease;
+
+    svg {
+      width: 1.5vmax;
+
+      &.desabilitado {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      &.arrowVolteado {
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  .game-center {
+    background-color: #0001;
+    backdrop-filter: blur(0.1vmax);
+    flex-grow: 1;
+    padding: 1vmax;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vmax;
+
+    h2 {
+      font-size: 1.5vmax;
+      text-align: center;
+    }
+
+    pre {
+      font-size: 1vmax;
+    }
+
+    .container-answers {
+      display: flex;
+      flex-direction: column;
+
+      .answer {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9vmax;
+        color: #ddd;
+        padding: 1vmax;
+        background-color: #0004;
+        border: 0.001vmax solid #e9e9e944;
+        cursor: pointer;
+
+        &[disabled] {
+          opacity: 0.5;
+        }
+
+        &:hover {
+          background-color: #3334;
+        }
+      }
+    }
+  }
+
+  .game-bottom {
+    padding: 1vmax;
+    text-align: center;
+    font-size: 0.95vmax;
+
+    .resetGame {
+      height: 3.26vmax;
+      margin-top: -0.5vmax;
+      width: 7.83vmax;
+      border-radius: 0.65vmax;
+      box-shadow: -0.33vmax -0.33vmax 0.98vmax #444,
+        0.33vmax 0.33vmax 0.98vmax #222, inset 0.33vmax 0.33vmax 0.65vmax #444,
+        inset -0.33vmax -0.33vmax 0.65vmax #222;
+      font-size: 1.04vmax;
+      background: #333;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Damion', cursive;
+      cursor: pointer;
+      border: none;
+      color: rgb(161, 161, 161);
+      transition: 500ms;
+    }
+
+    button:hover {
+      box-shadow: -0.33vmax -0.33vmax 0.98vmax #444,
+        0.33vmax 0.33vmax 0.98vmax #222, inset 0.33vmax 0.33vmax 0.65vmax #222,
+        inset -0.33vmax -0.33vmax 0.65vmax #444;
+      color: #d6d6d6;
+      transition: 500ms;
+    }
+  }
+}

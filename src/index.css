@@ -1,0 +1,74 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  user-select: none;
+}
+
+a,
+button,
+img {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-image: url('fondo.avif');
+  background-size: cover;
+}
+
+#root {
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container {
+  width: 60%;
+  margin-inline: auto;
+  background-color: #fff3;
+  backdrop-filter: blur(0.5vmax);
+  height: 100vh;
+  flex-direction: column;
+  padding: 2vmax;
+  flex-wrap: wrap;
+  place-content: center;
+  gap: 4vmax;
+
+  .title {
+    font-size: 3vmax;
+    text-align: center;
+    color: #e9e9e9;
+
+    img {
+      width: 3vmax;
+      transform: translateY(0.4vmax);
+    }
+  }
+}

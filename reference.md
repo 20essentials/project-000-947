@@ -1,0 +1,3 @@
+- **Reference / Inspiration ⬇️**
+  - [Button Design Inspiration](https://uiverse.io/00Kubi/red-crab-76)
+  - [@Midudev Teacher Class With Zustand](https://midu-react-13.surge.sh/)
